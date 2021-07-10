@@ -1,0 +1,38 @@
+server: &default_server
+  host: 0.0.0.0
+  appium_path: C:\Users\Faisal Khatri\AppData\Roaming\npm\node_modules\appium\lib\main.js
+  session_override: true
+  logs:
+    level: DEBUG
+    path: logs/appium-server.log
+    timestamp: true
+    local_timezone: true
+    debug_spacing: true
+
+servers:
+  android:
+    <<: *default_server
+    port: 4723
+    allow_insecure:
+      - adb_screen_streaming
+    android:
+      suppress_adb_kill: true
+
+devices:
+  android_browser:
+    android:
+      avd:
+        name: Pixel_3_XL_API_27
+        launch_timeout: 60000
+        ready_timeout: 60000
+        args: -gpu swiftshader_indirect
+      web:
+        accept_ssl_certs: true
+        options:
+      app:
+        type: WEB
+    os: ANDROID
+    name: PIXEL 4 API 29
+    browser: CHROME
+    version: 10.0
+    automation: UIAUTOMATOR2
